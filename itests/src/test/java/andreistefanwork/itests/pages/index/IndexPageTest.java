@@ -3,8 +3,8 @@ package andreistefanwork.itests.pages.index;
 import andreistefanwork.itests.AbstractIntegrationTest;
 import net.serenitybdd.core.pages.WebElementState;
 import net.serenitybdd.junit5.SerenityJUnit5Extension;
+import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.Open;
-import net.serenitybdd.screenplay.actions.SendKeys;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -27,7 +27,7 @@ public class IndexPageTest extends AbstractIntegrationTest {
     public void givenIndexPage_whenUserInputsName_thenAgePredictionIsDisplayedOnScreen() {
         givenThat(tester).wasAbleTo(Open.browserOn(indexPage));
 
-        when(tester).attemptsTo(SendKeys.of(TEST_NAME).into(NAME_INPUT));
+        when(tester).attemptsTo(Enter.theValue(TEST_NAME).into(NAME_INPUT));
 
         then(tester).should(
                 eventually(seeThat(the(PERSON_NAME), isVisible())),
